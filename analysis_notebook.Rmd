@@ -1,0 +1,45 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(readxl)
+```
+
+
+Import data set
+
+```{r}
+url <- "https://github.com/philbowsher/Foundation-of-the-R-Workflow-workshop-2019-09-06/raw/master/Examples/data/ad_treatment.xlsx"
+destfile <- "ad_treatment.xlsx"
+curl::curl_download(url, destfile)
+ad_treatment <- read_excel(destfile)
+
+ad_treatment
+
+```
+
+```{r}
+ggplot(ad_treatment) +
+ aes(x = age, fill = drug_treatment) +
+ geom_histogram(bins = 30L) +
+ scale_fill_hue() +
+ theme_minimal()
+
+
+```
+
+```{r}
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
+
+```
+
+
+
+
+
